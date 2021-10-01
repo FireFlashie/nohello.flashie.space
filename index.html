@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+    <head>
+        <title>Не привет - общайтесь эффективно!</title>
+        <meta name="description" content="Не начинайте разговор с пустых приветствий или вопросов, это лишь тратит время каждого участника. Задавайте вопрос сразу." />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+        <style type="text/css">
+            * {box-sizing: border-box}
+
+            /* basic styles */
+            body {
+                font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+                font-size: 110%;
+                max-width: 860px;
+                padding: 1em;
+                width: 100%;
+                margin: auto;
+            }
+            p.highlight {
+                font-weight: 600;
+            }
+
+
+            /* chat stuff */
+            .chatbox {
+                padding: 1em;
+                background-color: antiquewhite;
+                border-radius: 1em;
+                position: relative;
+                box-shadow: 0 0 10px inset #8883;
+                max-width: 600px;
+                margin: auto;
+            }
+            .chat {
+                padding: 0.5em 1em;
+                border-radius: 0.5em;
+                width: fit-content;
+                max-width: 90%;
+                box-shadow: 0.5em 0.5em 1em #8888;
+                position: relative;
+                margin: 1em;
+                color: #111;
+            }
+            .chat::before {
+                content: "";
+                width: 0px;
+                height: 0px;
+                border: 0.5em solid transparent;
+                position: absolute;
+            }
+            .chat.right {
+                background-color: #baffd5;
+                margin: 1em 1em 1em auto;
+                text-align: right;
+                transform-origin: 100% 100%;
+            }
+            .chat.right::before {
+                right: -1em;
+                bottom: 0.3em;
+                border-left: 0.75em solid #baffd5;
+            }
+            .chat.left {
+                background-color: #c9c9ff;
+                margin: 1em auto 1em 1em;
+                transform-origin: 0% 0%;
+            }
+            .chat.left::before {
+                left: -1em;
+                top: 0.3em;
+                border-right: 0.75em solid #c9c9ff;    
+            }
+
+            /* animations */
+            @keyframes pop-in {
+                0% {transform: scale(0);}
+                100% {transform: scale(1)}
+            }
+
+            @media ( prefers-reduced-motion: no-preference) {
+                .animate-in {
+                    transform: scale(0);
+                    animation: 250ms cubic-bezier(0, 0, 0.25, 1.25) 0s 1 normal forwards running pop-in;
+                }
+                .to-animate {
+                    transform: scale(0);
+                }
+            }
+            
+            /* sticky footer */
+            footer {
+                position: relative;
+                width: 100%;
+                left: 0;
+                bottom: 0;
+            }
+            footer p {
+                width: 100%;
+                text-align: center;
+            }
+
+            /* overlay image */
+            .overlay-img {
+                position: fixed;
+                top: 1vw;
+                right: 1vw;
+                opacity: 0.2;
+                z-index: -1;
+                display: flex;
+            }
+            .overlay-img img {
+                object-fit: fill;
+                width: 20vw;
+            }
+            @media screen and (min-width: 1400px) {
+                .overlay-img {
+                    opacity: 0.8;
+                }
+            }
+
+            /* dark theme */
+            @media (prefers-color-scheme: dark) {
+                body {
+                    background-color: #272a2d;
+                    color: #eee;
+                }
+                a, a:visited, a:active {
+                    color: #fee;
+                }
+            }
+        </style>
+        <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="icons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+        <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Не привет - общайтесь эффективно!">
+        <meta property="og:description" content="Не начинайте разговор с пустых приветствий или вопросов, это лишь тратит время каждого участника. Задавайте вопрос сразу.">
+        <meta property="og:url" content="https://nohello.flashie.space/">
+        <meta property="og:image" content="https://nohello.flashie.space/images/nohello_640_filled.png">
+    </head>
+    <body>
+        <header>
+            <h1>Не привет</h1>
+        </header>
+        <section id="intro">
+            <h2>Кратко</h2>
+            <p>Современные средства коммуникации созданы в расчете на эффективность, их использование должно экономить время для всех участников, обеспечивая асинхронный обмен информацией. Деловое общение должно быть эффективным. Не ждите ответа, если вы просто напишите "Привет!" в чате, вместо этого сформулируйте сообщение так, чтобы собеседник смог дать ответь сразу же, как найдет время на чтение сообщения.</p>
+            <h2>Чат-этикет</h2>
+            <div class="chatbox">
+                <p class="chat left  animate-in" style="animation-delay: 1s">Привет!</p>
+                <p class="chat right animate-in" style="animation-delay: 2s">Привет.</p>
+                <p class="chat left  animate-in" style="animation-delay: 3s">Ты сейчас не занят?</p>
+                <p class="chat right animate-in" style="animation-delay: 4s">А что?</p>
+                <p class="chat left  animate-in" style="animation-delay: 5s">Могу я спросить кое-что?</p>
+                <p class="chat right animate-in" style="animation-delay: 6s">Конечно.</p>
+                <p class="chat left  animate-in" style="animation-delay: 7s">Спасибо! Я тут пытаюсь сделать...</p>
+                <p class="chat right animate-in" style="animation-delay: 8s">А, попробуй вот так...</p>
+                <p class="chat left  animate-in" style="animation-delay: 9s">Блин, спасибо огромное!</p>
+            </div>
+            <p>Такой диалог далеко не редкость, но как видите, далеко не эффективен. Каждое сообщение отстраняет момент, когда вы получите нужную вам информацию.</p>
+            <p>Вы стараетесь быть вежливым, не переходя сразу к своей проблеме, как люди делают при личном общении. Но чат - это совершенно другое. Вместо проявления вежливости, вы заставляете другого человека ждать, пока вы сформулируете вопрос, что приводит к потере эффективности.</p>
+            <p class="highlight">Посмотрите на этот диалог:</p>
+            <div class="chatbox" id="to-animate">
+                <p class="chat left  to-animate" style="animation-delay: 1s">Привет, как твои дела?<br>Если ты сейчас не занят, я бы хотел спросить: я тут пытаюсь сделать...</p>
+                <p class="chat right to-animate" style="animation-delay: 2s">Привет! Нормально. Конечно, попробуй вот так...</p>
+                <p class="chat left  to-animate" style="animation-delay: 3s">Блин, спасибо огромное!</p>
+            </div>
+            <p>Заметьте, вы получили бы обратную связь быстрее и не заставляя собеседника ждать - он начинает думать над вашим вопросом сразу. Будучи кратким, не обязательно быть грубым - это отлично демонстрирует уважение к времени другого человека.</p>
+            <h2>Телефонный этикет</h2>
+            <p>Некоторые люди любят проверять сообщением "привет", действительно ли человек "в сети", как сообщает его статус. А как только получают ответ - незамедлительно звонят, дабы обсудить что-либо. Не нужно делать и так. Если у человека есть желание и возможность ответить на сообщение в чате, это не означает, что он доступен для голосового или видеозвонка.</p>
+            <p>Вместо того, что бы пытаться проверить здесь ли человек или спрашивать "Можешь говорить?" (что, впрочем, уже лучше), вы можете попробовать сделать вот так:</p>
+            <div class="chatbox" id="to-animate">
+                <p class="chat left  to-animate" style="animation-delay: 1s">Привет! Будет <b>X</b> минут, обсудить по телефону...?</p>
+                <p class="chat right to-animate" style="animation-delay: 2s">Привет. Конечно, давай через 30 минут?</p>
+            </div>
+            <p>Это одновременно выполняет три функции: указывает требуемое для вопроса время, дает собеседнику некоторый контекст, а также помогает вспомнить, что вы хотели обсудить, если собеседник не скоро ответит.</p>
+        </section>
+        <footer>
+            <p><a href="https://github.com/FireFlashie/nohello.flashie.space">Сделать форк на GitHub</a></p>
+        </footer>
+        <picture class="overlay-img">
+            <source srcset="images/nohello_320_tr.png 1x, images/nohello_640_tr.png 2x" media="(prefers-color-scheme: light)">
+            <source srcset="images/nohello_320_tr_w.png 1x, images/nohello_640_tr_w.png 2x" media="(prefers-color-scheme: dark)">
+            <img src="images/nohello_320_tr.png">
+        </picture>
+        <script>
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting || entry.isVisible) {
+                        entry.target.classList.add("animate-in");
+                        observer.unobserve(entry.target);
+                }
+            })
+        }, { threshold: 0.2 })
+
+        document.querySelectorAll('.to-animate').forEach(elem => observer.observe(elem));
+        </script>
+    </body>
+</html>
